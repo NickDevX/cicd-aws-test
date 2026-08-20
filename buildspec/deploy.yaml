@@ -1,7 +1,8 @@
 version: 0.2
 
-# env:
-#   variables:
+env:
+  variables: FUNCTION_NAME="cicd-demo"
+    ZIP_FILE=lambda.zip
 #     JAVA_HOME: '/usr/lib/jvm/java-8-openjdk-amd64'
 #   parameter-store:
 #     LOGIN_PASSWORD: /CodeBuild/dockerLoginPassword
@@ -12,19 +13,11 @@ phases:
       nodejs: 24.x
     commands:
       - yum install zip -y
-    finally:
-      - echo yum installed
-  pre_build:
-    commands:
-      - export FUNCTION_NAME="cicd-demo"
-      - export ZIP_FILE=lambda.zip
-    finally:
-      - echo This always runs even if the login command fails
+      - aws lambda update-function-code \
+        --function-name  $FUNCTION_NAME \
+        --zip-file fileb://$ZIP_FILE
   build:
     commands:
       - echo prepared ZIP...
       - zip -r $ZIP_FILE .
       - echo deploy lambda function $FUNCTION_NAME
-      - aws lambda update-function-code \
-        --function-name  $FUNCTION_NAME \
-        --zip-file fileb://$ZIP_FILE
