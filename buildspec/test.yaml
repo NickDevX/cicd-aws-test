@@ -10,10 +10,10 @@ phases:
   install:
     runtime-versions:
       nodejs: 24.x
-    commands:
-      - echo (test yaml) Entered the install phase...
-      - apt-get update -y
-      - apt-get install -y maven
+    # commands:
+    #   - echo (test yaml) Entered the install phase...
+    #   - apt-get update -y
+    #   - apt-get install -y maven
     finally:
       - echo This always runs even if the update or install command fails
   # pre_build:
@@ -26,7 +26,7 @@ phases:
     commands:
       - echo Entered the test phase...
       - echo test started on `date`
-      - mvn install
+      - npm install
     finally:
       - echo This always runs even if the install command fails
   post_build:
