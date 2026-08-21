@@ -13,7 +13,6 @@ phases:
     runtime-versions:
       nodejs: 24.x
     commands:
-      - yum install zip -y
       - aws lambda update-function-code \
         --function-name  $FUNCTION_NAME \
         --zip-file fileb://$ZIP_FILE
