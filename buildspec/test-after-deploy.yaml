@@ -1,0 +1,18 @@
+version: 0.2
+
+env:
+  variables:
+    FUNCTION_NAME: 'ci-cd-demo'
+    # ZIP_FILE: 'lambda.zip'
+#     JAVA_HOME: '/usr/lib/jvm/java-8-openjdk-amd64'
+#   parameter-store:
+#     LOGIN_PASSWORD: /CodeBuild/dockerLoginPassword
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 24.x
+    commands:
+  build:
+    commands:
+      - aws lambda invoke --function-name $FUNCTION_NAME --cli-binary-format raw-in-base64-out --payload '{ "key": "value" }' response.json

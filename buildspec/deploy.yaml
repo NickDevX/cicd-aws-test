@@ -17,6 +17,6 @@ phases:
   build:
     commands:
       - echo prepared ZIP...
-      - zip -r $ZIP_FILE .
+      - zip -r $ZIP_FILE . -x buildspecs/* .gitignore
       - echo deploy lambda function $FUNCTION_NAME
       - aws lambda update-function-code --function-name  $FUNCTION_NAME --zip-file fileb://$ZIP_FILE
