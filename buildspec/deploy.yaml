@@ -13,9 +13,10 @@ phases:
     runtime-versions:
       nodejs: 24.x
     commands:
-      - aws lambda update-function-code --function-name  $FUNCTION_NAME --zip-file fileb://$ZIP_FILE
+      - echo "aws lambda update-function-code --function-name  $FUNCTION_NAME --zip-file fileb://$ZIP_FILE"
   build:
     commands:
       - echo prepared ZIP...
       - zip -r $ZIP_FILE .
       - echo deploy lambda function $FUNCTION_NAME
+      - aws lambda update-function-code --function-name  $FUNCTION_NAME --zip-file fileb://$ZIP_FILE
