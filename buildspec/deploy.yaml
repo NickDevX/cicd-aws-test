@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    FUNCTION_NAME: 'cicd-demo'
+    FUNCTION_NAME: 'ci-cd-demo'
     ZIP_FILE: 'lambda.zip'
 #     JAVA_HOME: '/usr/lib/jvm/java-8-openjdk-amd64'
 #   parameter-store:
